@@ -47,7 +47,7 @@ public class MainFragment extends BrowseSupportFragment {
     private static final int BACKGROUND_UPDATE_DELAY = 300;
     private static final int GRID_ITEM_WIDTH = 200;
     private static final int GRID_ITEM_HEIGHT = 200;
-    private static final int NUM_ROWS = 6;
+    private static final int NUM_ROWS = MovieList.MOVIE_CATEGORY.length;
     private static final int NUM_COLS = 15;
 
     private final Handler mHandler = new Handler(Looper.myLooper());
@@ -86,8 +86,7 @@ public class MainFragment extends BrowseSupportFragment {
         ArrayObjectAdapter rowsAdapter = new ArrayObjectAdapter(new ListRowPresenter());
         CardPresenter cardPresenter = new CardPresenter();
 
-        int i;
-        for (i = 0; i < NUM_ROWS; i++) {
+        for (int i = 0; i < NUM_ROWS; i++) {
             if (i != 0) {
                 Collections.shuffle(list);
             }
@@ -98,15 +97,6 @@ public class MainFragment extends BrowseSupportFragment {
             HeaderItem header = new HeaderItem(i, MovieList.MOVIE_CATEGORY[i]);
             rowsAdapter.add(new ListRow(header, listRowAdapter));
         }
-
-        HeaderItem gridHeader = new HeaderItem(i, "PREFERENCES");
-
-        GridItemPresenter mGridPresenter = new GridItemPresenter();
-        ArrayObjectAdapter gridRowAdapter = new ArrayObjectAdapter(mGridPresenter);
-        gridRowAdapter.add(getResources().getString(R.string.grid_view));
-        gridRowAdapter.add(getString(R.string.error_fragment));
-        gridRowAdapter.add(getResources().getString(R.string.personal_settings));
-        rowsAdapter.add(new ListRow(gridHeader, gridRowAdapter));
 
         setAdapter(rowsAdapter);
     }
