@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace 'org.devcoders.mediacenter'
+    namespace 'org.devcoders.mediacentertv'
     compileSdk 36
 
     defaultConfig {
